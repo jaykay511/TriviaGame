@@ -1,0 +1,26 @@
+body {
+    background-image: url("../images/background.jpg");
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}
+
+#container {
+    margin: 0 auto;
+    text-align: center;
+    background-color: bisque;
+    width: 800px;
+    opacity: 0.9;
+}
+
+#timer {
+    font-size: 24px;
+    color: darkblue;
+}
+
+button {
+    background-color: green;
+    font-size: 16px;
+    padding: 10px;
+    color: whitesmoke;
+    border-radius: 10px;
+}
