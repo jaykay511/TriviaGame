@@ -1,31 +1,54 @@
-window.onload = function() {
-    startTimer()
+$(document).ready(function() {
+
+var sec = 60;
+
+var stopTimer = function () {
+    clearInterval(startTimer);
 };
 
-function startTimer() {
-    var sec = 60;
-    var starting = setInterval(function() {
+var countdown = function () {
+    sec--;
     $("#timer").text("Time Remaining: " + sec);
-      sec--;
-    }, 1000);
+    if (sec === 0) {
+        stopTimer();
+    }
+};
 
-    // stop timer not working
-    // if(sec === 0) {
-    //     clearInterval(starting);
-    // };
+var score = 0;
+
+var correctArray = ["Gotham City", "Baseball", "42", "Warthog", "4", "Da Vinci", "Mercury"];
+
+var answerCount = function (ans) {
+    if (correctArray.indexOf(ans) > -1) {
+        score++;
+    }
 };
 
 // clicking on done button to end quiz
-$("#done").click(function(event) {
+$("#done").click(function (event) {
     event.preventDefault();
-// calculate correct, incorrect, unanswered responses
-    var inputs = $("#form input:checked");
+    stopTimer();
 
-    for (var i = 0; i < inputs.length; i++) {
-        // alert($(inputs[i]).val());
+    // capturing answers
+    var a1 = $("input[name=city]:checked").val();
+    var a2 = $("input[name=sport]:checked").val();
+    var a3 = $("input[name=dots]:checked").val();
+    var a4 = $("input[name=animal]:checked").val();
+    var a5 = $("input[name=strings]:checked").val();
+    var a6 = $("input[name=artist]:checked").val();
+    var a7 = $("input[name=planet]:checked").val();
 
-    }
+    answerCount(a1);
+    answerCount(a2);
+    answerCount(a3);
+    answerCount(a4);
+    answerCount(a5);
+    answerCount(a6);
+    answerCount(a7);
 
-// display html
+    alert("Your score is " + score + " out of 7!")
+});
+
+var startTimer = setInterval(countdown, 1000);
 
 });
