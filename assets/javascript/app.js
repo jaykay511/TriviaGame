@@ -4,6 +4,7 @@ var sec = 60;
 
 var stopTimer = function () {
     clearInterval(startTimer);
+    alert("Oh no, time's up! Refresh to try again.");
 };
 
 var countdown = function () {
