@@ -5,7 +5,7 @@ $(document).ready(function () {
     var stopTimer = function () { // in reality this is a reset function
         clearInterval(startTimer);
         sec = 60; // reset seconds
-        // startTimer = setInterval(countdown, 1000); // reset timer
+        startTimer = setInterval(countdown, 1000); // reset timer
         score = 0; // reset score
     };
 
@@ -23,7 +23,15 @@ $(document).ready(function () {
     var correctArray = ["Gotham City", "Baseball", "42", "Warthog", "4", "Da Vinci", "Mercury"];
 
     var answerCount = function (ans) {
-        if (correctArray.indexOf(ans)) {
+        console.log('in here');
+        
+        console.log(ans);
+        console.log(typeof ans);
+        if (correctArray.indexOf(ans) != -1) {
+            
+
+            console.log('in here now');
+            
             score++;
         }
     };
@@ -32,7 +40,7 @@ $(document).ready(function () {
     $("#done").click(function (event) {
         event.preventDefault();
         submitForm();
-        $("#container").hide();
+        // $("#container").hide();
     });
 
     // stopping timer and submitting answers for tally
@@ -44,14 +52,13 @@ $(document).ready(function () {
     function getUserInputToPassToAnswerCount() {
         // creating new array and pushing user's answers into it
         const choices = [];
+        
         $('input:radio[name=choice]:checked').each(function () {
-            choices.push($(this).val());
+            console.log($(this)[0].value);
+            
+            answerCount($(this)[0].value);
         });
-        console.log(choices);
-        // looping through user's answers to see if they are in "correct answers" array
-        for (let choice in choices) {
-            answerCount(choice);
-        }
+        
         alert("Your score is " + score + " out of 7! Refresh to play again.");
     };
 
